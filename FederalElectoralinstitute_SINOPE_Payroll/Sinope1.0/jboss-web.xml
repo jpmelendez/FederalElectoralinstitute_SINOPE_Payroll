@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!-- ==================================================================== -->
+  <!-- Archivo de configuracion de variables de contexto                    -->  
+  <!-- y recursos externos                                                  -->
+  <!-- Jesus Alfonso Falcon Sorkee											-->
+  <!-- Departamento de Desarrollo de Sistemas								-->	
+  <!-- ==================================================================== -->
+<jboss-web>
+	
+	<!-- Variables de Contexto -->
+	
+	<resource-env-ref>   
+        <resource-env-ref-name>util/urlCentral</resource-env-ref-name>   
+        <jndi-name>util/urlCentral</jndi-name>   
+    </resource-env-ref>
+	
+	<resource-env-ref>   
+        <resource-env-ref-name>util/urlLocal</resource-env-ref-name>   
+        <jndi-name>util/urlLocal</jndi-name>   
+    </resource-env-ref>
+    
+    <resource-env-ref>   
+        <resource-env-ref-name>util/rutaHadoop</resource-env-ref-name>   
+        <jndi-name>util/rutaHadoop</jndi-name>   
+    </resource-env-ref>
+    
+    <resource-env-ref>   
+        <resource-env-ref-name>util/sinope/conexionBD</resource-env-ref-name>   
+        <jndi-name>util/sinope/conexionBD</jndi-name>   
+    </resource-env-ref>
+
+
+	<!-- Variables de DataSource -->
+	
+	<resource-ref>
+		<res-ref-name>jdbc/conn</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<jndi-name>java:/connSinope</jndi-name>
+	</resource-ref>
+
+	
+</jboss-web>

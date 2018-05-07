@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/06/2011 03:56:56 PM by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="mx.org.ife.sinope.dto.nomina.comprobacion.DTOReintegros" table="REINTEGROS" schema="SINOPE">
+        <id name="idReintegro" type="java.lang.Integer">
+            <column name="ID_REINTEGRO" precision="5" scale="0" />
+            <generator class="increment" />
+        </id>
+        <property name="idNomina" type="java.lang.Integer">
+            <column name="ID_NOMINA" precision="10" scale="0" not-null="true" />
+        </property>
+        <property name="idEmpleado" type="java.lang.Integer">
+            <column name="ID_EMPLEADO" precision="10" scale="0" not-null="true" />
+        </property>
+        <property name="fechaDeposito" type="java.sql.Date">
+            <column name="FECHA_DEPOSITO" not-null="true" />
+        </property>
+        <property name="fichaDeposito" type="java.lang.String">
+            <column name="FICHA_DEPOSITO" length="50" not-null="true" />
+        </property>
+        <property name="numeroCuenta" type="java.lang.Long">
+            <column name="NUMERO_CUENTA" precision="15" scale="0" not-null="true" />
+        </property>
+        <property name="usuario" type="java.lang.String">
+            <column name="USUARIO" length="100" not-null="true" />
+        </property>
+        <property name="fechaHora" type="java.sql.Timestamp">
+            <column name="FECHA_HORA" not-null="true" />
+        </property>
+        <set name="historicoPagos" inverse="true" lazy="true" table="HISTORICO_PAGO" fetch="select">
+            <key>
+                <column name="ID_REINTEGRO" precision="5" scale="0" />
+            </key>
+            <one-to-many class="mx.org.ife.sinope.dto.nomina.proceso.DTOHistoricoPago" />
+        </set>
+    </class>
+</hibernate-mapping>

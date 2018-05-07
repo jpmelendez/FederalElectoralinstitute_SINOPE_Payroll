@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+        
+        
+        
+        
+<struts>
+	<constant name="struts.devMode" value="true" />
+	
+	<package name="historico" namespace="/historico" extends="default">
+
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<action name="ReporteHistReintegro" method="generarReporte" class="mx.org.ife.sinope.controller.reportes.historicoReintegros.CTRHistoricoReintegros">
+			<result name="ReporteHistReintegroPDF" type="stream">
+        		<param name="contentType">application/pdf</param>
+        		<param name="inputName">fileStream</param>
+       			<param name="contentDisposition">attachment;filename="HistoricoReintegros.pdf"</param>
+        		<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+	</package>
+	
+</struts>

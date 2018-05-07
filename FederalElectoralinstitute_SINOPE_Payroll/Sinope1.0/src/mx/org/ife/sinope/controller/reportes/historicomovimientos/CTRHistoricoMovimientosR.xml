@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.reload" value="true"/>
+	<constant name="struts.configuration.xml.reload" value="false"/>
+
+	<!-- Módulo Reporte Historico de movimientos -->
+	<package name="reporteHistoricoMovimientos" extends="defaultSinope">
+
+		<!-- <result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+		
+				<interceptors>
+
+			<interceptor name="sessionInterceptor"
+				class="mx.org.ife.sinope.interceptor.SessionInterceptor" />
+
+			<interceptor-stack name="fileUploadStack">
+				<interceptor-ref name="exception" />
+				<interceptor-ref name="alias" />
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="sessionInterceptor" />
+				<interceptor-ref name="i18n" />
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="debugging" />
+				<interceptor-ref name="profiling" />
+				<interceptor-ref name="scopedModelDriven" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="fileUpload">
+					<param name="maximumSize">31457280</param>
+					<param name="allowedTypes">
+						application/msword,application/vnd.ms-excel,application/pdf,text/plain,
+						application/x-zip-compressed,application/zip,application/octet-stream,
+						application/vnd.ms-powerpoint,
+						application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+						application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+						application/vnd.openxmlformats-officedocument.presentationml.presentation,
+						application/vnd.openxmlformats-officedocument.presentationml.slideshow						
+                    </param>
+				</interceptor-ref>
+				<interceptor-ref name="checkbox" />
+				<interceptor-ref name="staticParams" />
+				<interceptor-ref name="actionMappingParams" />
+				<interceptor-ref name="params">
+					<param name="excludeParams"> dojo\..*,^struts\..*</param>
+				</interceptor-ref>
+				<interceptor-ref name="conversionError" />
+				<interceptor-ref name="validation">
+					<param name="excludeMethods"> input,back,cancel,browse</param>
+				</interceptor-ref>
+				<interceptor-ref name="workflow">
+					<param name="excludeMethods"> input,back,cancel,browse</param>
+				</interceptor-ref>
+			</interceptor-stack>
+
+			<interceptor-stack name="defaultSecurityStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="sessionInterceptor" />
+				<interceptor-ref name="tokenSession">
+					<param name="excludeMethods">*</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>-->
+		
+		<default-interceptor-ref name="defaultSecurityStack" />
+		
+		<global-results>
+			<!-- globales 
+			<result name="error">/jsp/JspError.jsp</result>
+			<result name="inicial" type="redirectAction">
+				<param name="actionName">login_init</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="reporte">/jsp/JspReport.jsp</result>
+			<result name="JspEntrada" type="tiles">Main.Layout</result>
+			<result name="logout_redirect" type="redirectAction">
+				<param name="actionName">login_init</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="invalid.token">/jsp/JspError.jsp</result>
+			<result name="message.page" type="tiles">message.page</result>-->
+			
+			<result name="stream.archivo.output" type="stream">
+        		<param name="contentType">${contentType}</param>
+        		<param name="inputName">resultStream</param>
+       			<param name="contentDisposition">attachment;filename="${fileName}"</param>
+			</result>
+			
+			<result name="consulta">/jsp/JspDB.jsp</result> 
+			
+		</global-results>
+		
+		<action name="ReporteHistMovimientos" method="reportes" class="mx.org.ife.sinope.controller.reportes.historicomovimientos.CTRHistoricoMovimientosR">
+			<result name="ReporteHistoricoMovimientosE" type="stream">
+        		<param name="contentType">text/html</param>
+        		<param name="inputName">fileStream</param>
+       			 <param name="contentDisposition">filename="HistoricoMovimientosE.html"</param>
+        		<param name="bufferSize">1024</param>
+			</result>
+			<result name="ReporteHistoricoMovimientosQ" type="stream">
+        		<param name="contentType">text/html</param>
+        		<param name="inputName">fileStream</param>
+       			 <param name="contentDisposition">filename="HistoricoMovimientosQ.html"</param>
+        		<param name="bufferSize">1024</param>
+			</result>
+			<result name="ReporteHistoricoMovimientosPDFE" type="stream">
+        		<param name="contentType">application/pdf</param>
+        		<param name="inputName">fileStream</param>
+       			 <param name="contentDisposition">attachment;filename="HistoricoMovimientosE.pdf"</param>
+        		<param name="bufferSize">1024</param>
+			</result>
+			<result name="ReporteHistoricoMovimientosPDFQ" type="stream">
+        		<param name="contentType">application/pdf</param>
+        		<param name="inputName">fileStream</param>
+       			 <param name="contentDisposition">attachment;filename="HistoricoMovimientosQ.pdf"</param>
+        		<param name="bufferSize">1024</param>
+			</result>
+			<result name="ReporteHistoricoMovimientosEXCELQ" type="stream">
+    			<param name="contentDisposition">attachment;filename=reporte.xls</param>
+    			<param name="contentType">application/vnd.ms-excel</param>
+    			<param name="inputName">fileStream</param>
+    			<param name="bufferSize">1024</param>
+			</result>	
+				<result name="ReporteHistoricoMovimientosEXCELE" type="stream">
+    			<param name="contentDisposition">attachment;filename=reporte.xls</param>
+    			<param name="contentType">application/vnd.ms-excel</param>
+    			<param name="inputName">fileStream</param>
+    			<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
+	</package>
+</struts>
+

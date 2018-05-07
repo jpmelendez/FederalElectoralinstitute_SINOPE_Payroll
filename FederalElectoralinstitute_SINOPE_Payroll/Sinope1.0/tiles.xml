@@ -1,0 +1,936 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ 
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+ 
+<tiles-definitions>
+
+	<definition name="Main.Layout" template="/jsp/JspMaster.jsp">	
+		<put-attribute name="HeadContent" value=""/>	
+		<put-attribute name="Header" value="/jsp/JspHeader.jsp"/>
+		<put-attribute name="Body" value="/jsp/JspHome.jsp" />
+        <put-attribute name="Footer" value="/jsp/JspFooter.jsp"/>
+  	</definition>
+  	
+	<!-- globales -->  	
+  	<definition name="message.page" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/generic/JspSimpleHeadContent.jsp"/>
+    	<put-attribute name="Body"  value="/jsp/generic/JspMessagePage.jsp"/>    
+	</definition>     
+  	
+  	
+  	<!-- Head content para incluir el men� y evitar problemas de jquery con prototype -->
+	<definition name="Parametro.Main.Layout" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/JspParametroHeadContent.jsp" />
+  	</definition>
+  	 	
+ 	<definition name="parametro.consultar.layout" extends="Parametro.Main.Layout">
+		<put-attribute name="Body" value="/jsp/JspParametroConsultar.jsp" />
+  	</definition>
+ 	
+  	
+  	<definition name="parametro.capturar.layout" extends="Parametro.Main.Layout">
+		<put-attribute name="Body" value="/jsp/JspParametroCapturar.jsp" />
+  	</definition>
+  	
+  	<definition name="parametro.modificar.layout" extends="Parametro.Main.Layout">
+		<put-attribute name="Body" value="/jsp/JspParametroModificar.jsp" />
+  	</definition>
+  	
+  	<definition name="Parametro.Seleccionar.Unidad.Layout" extends="Parametro.Main.Layout">
+		<put-attribute name="Body" value="/jsp/JspParametroSeleccionarUnidadResponsable.jsp" />
+  	</definition>
+  	
+	<definition name="parametro.error.layout" extends="Parametro.Main.Layout">
+		<put-attribute name="Body" value="/jsp/JspParametroError.jsp" />
+  	</definition>  	  	  	  	  	  	  	  	  	  	  	  	
+  	<!-- Termina Par�metros -->
+  	  
+  	
+  	<!-- 
+  		Estructura program�tica 
+  	-->  	
+  	<!-- Head content para incluir el men� y evitar problemas de jquery con prototype -->
+ 	<definition name="estructuraProgramatica.Main.Layout" extends="Main.Layout">
+ 		<put-attribute name="HeadContent" value="/jsp/catalogos/estructuraProgramatica/JspHeadContentEstructuraProgramatica.jsp"/>
+ 	</definition>
+  	 
+  	<!-- Mensaje confirmaci�n -->  	
+	<definition name="estructuraProgramatica.mensajeConfirmacion.layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspEstructuraProgramaticaConfirmacion.jsp" />																									   
+  	</definition>	  	  	  	
+  	
+  	<!-- Mensaje error -->
+	<definition name="estructuraProgramatica.error.layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspEstucturaProgramaticaError.jsp" />
+  	</definition>
+  	
+  	<!-- Carga masiva -->
+  	<definition name="catalogo.cargaMasiva.layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspCargaMasiva.jsp" />																									   
+  	</definition>		  	  	
+  	
+  	<!-- Actividad institucional -->  	
+  	<definition name="actividadInstitucional.capturar.modificar.layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspActividadInstitucionalCapturarModificar.jsp" />
+  	</definition>
+  	
+  	<definition name="actividadInstitucional.consultar.layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspActividadInstitucionalConsultar.jsp" />
+  	</definition>  	
+  	
+  	<!-- Programa presupuestario -->
+  	<definition name="programaPresupuestario.capturar.modificar.layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspProgramaPresupuestarioCapturarModificar.jsp" />
+  	</definition>
+  	
+  	<definition name="programaPresupuestario.consultar.layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspProgramaPresupuestarioConsultar.jsp" />
+  	</definition>
+  	
+  	
+  	<!-- urshcp -->
+  	<definition name="urshcp.capturar.modificar.layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspUrshcpCapturarModificar.jsp" />
+  	</definition>
+  	
+  	<definition name="urshcp.consultar.layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspUrshcpConsultar.jsp" />
+  	</definition>
+  	
+  	
+  	<!-- Unidades responsables -->
+  	<definition name="unidadResponsable.capturar.modificar.layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspUnidadResponsableCapturarModificar.jsp" />
+  	</definition>
+  	
+  	<definition name="unidadResponsable.consultar.layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspUnidadResponsableConsultar.jsp" />
+  	</definition>
+  	
+  	
+  	<!-- Subprogramas -->
+  	<definition name="subprograma.capturar.modificar.layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspSubprogramaCapturarModificar.jsp" />
+  	</definition>
+  	
+  	<definition name="subprograma.consultar.layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspSubprogramaConsultar.jsp" />
+  	</definition>
+  	
+  	<definition name="subprograma.modificar.layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspProyectoModificar.jsp" />
+  	</definition>
+  	
+  	
+  	<!-- Proyectos -->
+  	<definition name="Proyecto.Capturar.Modificar.Layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspProyectoCapturarModificar.jsp" />
+  	</definition>
+  	
+  	<definition name="Proyecto.Consultar.Layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspProyectoConsultar.jsp" />
+  	</definition>
+  	
+  	<definition name="Proyecto.Modificar.Layout" extends="estructuraProgramatica.Main.Layout">
+		<put-attribute name="Body" value="/jsp/catalogos/estructuraProgramatica/JspProyectoCapturar.jsp" />
+  	</definition>
+  	
+  	<!-- Termina proyectos -->  	  	  	  	  	  	  
+  	<!-- Termina estructura program�tica -->
+  	  	
+  	
+  	<!-- CATALOGOS GENERALES -->
+	<definition name="Layout.Catalogo" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/catalogos/general/JspHeadContentCatalogo.jsp"/>
+  	</definition>
+  	  	
+  	<definition name="catalogo.index" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspCatIndex.html"/>
+	</definition>
+	
+  	<definition name="catalogo.cargaMasiva" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspCargaMasiva.jsp"/>
+	</definition>
+  	<definition name="catalogo.viewHelper" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspViewHelper.jsp"/>    
+	</definition>
+	
+	<!-- tipo:consulta (data) -->
+  	<definition name="catalogo.tabulador.consulta" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspDataGridTabulador.jsp"/>    
+	</definition>
+  	<definition name="catalogo.puesto.consulta" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspDataViewPuesto.jsp"/>    
+	</definition>
+  	<definition name="catalogo.concepto.consulta" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspDataGridConcepto.jsp"/>    
+	</definition>
+  	<definition name="catalogo.gastoDeCampo.consulta" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspDataGridGastoDeCampo.jsp"/>    
+	</definition>
+  	<definition name="catalogo.impuesto.consulta" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspDataViewImpuesto.jsp"/>    
+	</definition>
+  	<definition name="catalogo.subsidio.consulta" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspDataViewSubsidio.jsp"/>    
+	</definition>
+  	<definition name="catalogo.radicacion.consulta" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspDataViewRadicacion.jsp"/>    
+	</definition>
+	<definition name="catalogo.subradicacion.consulta" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspDataViewSubRadicacion.jsp"/>    
+	</definition>  
+			
+  	<!-- tipo:modifica (edit) -->
+  	<definition name="catalogo.tabulador.modifica" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspEditTabulador.jsp"/>    
+	</definition>
+  	<definition name="catalogo.puesto.modifica" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspEditPuesto.jsp"/>    
+	</definition>
+  	<definition name="catalogo.concepto.modifica" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspEditConcepto.jsp"/>    
+	</definition>
+  	<definition name="catalogo.gastoDeCampo.modifica" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspEditGastoDeCampo.jsp"/>    
+	</definition>
+  	<definition name="catalogo.impuesto.modifica" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspEditImpuesto.jsp"/>    
+	</definition>
+  	<definition name="catalogo.subsidio.modifica" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspEditSubsidio.jsp"/>    
+	</definition>
+  	<definition name="catalogo.radicacion.modifica" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspEditRadicacion.jsp"/>    
+	</definition>
+	<definition name="catalogo.subradicacion.modifica" extends="Layout.Catalogo">
+    	<put-attribute name="Body"  value="/jsp/catalogos/general/JspEditSubRadicacion.jsp"/>    
+	</definition>  
+  	<!-- FIN. CATALOGOS GENERALES -->  	
+
+
+	<!-- Plantillas -->
+	<definition name="Plantillas.Capturar" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/plantillas/JspHeadContentPlantillas.jsp" /> 
+		<put-attribute name="Body" value="/jsp/plantillas/JspPlantillasCapturar.jsp" /> 
+	</definition>
+	
+	<definition name="Plantillas.Consultar" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/plantillas/JspHeadContentPlantillas.jsp" />
+    	<put-attribute name="Body" value="/jsp/plantillas/JspPlantillasConsultar.jsp"/>
+	</definition>
+	
+	<definition name="Plantilla.Masiva" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/plantillas/JspHeadContentPlantillas.jsp" /> 
+    	<put-attribute name="Body" value="/jsp/plantillas/JspPlantillasCapturarMasiva.jsp"/>
+	</definition>
+	
+	<definition name="Plantillas.confirmacion" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/plantillas/JspHeadContentPlantillas.jsp" /> 
+    	<put-attribute name="Body" value="/jsp/plantillas/JspPlantillasConfirmacion.jsp"/>
+	</definition>
+	
+	<definition name="Plantillas.error" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/plantillas/JspHeadContentPlantillas.jsp" /> 
+    	<put-attribute name="Body" value="/jsp/plantillas/JspPlantillasError.jsp"/>
+	</definition>
+	
+	<definition name="Plantillas.Modificar" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/plantillas/JspHeadContentPlantillas.jsp" />
+		<put-attribute name="Body" value="/jsp/plantillas/JspPlantillasModificar.jsp"/>
+	</definition>
+	
+	<definition name="Plantillas.Liberar" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/plantillas/JspHeadContentPlantillas.jsp" />
+    	<put-attribute name="Body" value="/jsp/plantillas/JspPlantillasLiberar.jsp"/>
+	</definition>
+	
+	<definition name="Plantillas.Consulta.General" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/plantillas/JspHeadContentPlantillas.jsp" />
+    	<put-attribute name="Body" value="/jsp/plantillas/JspPlantillasConsultaGeneral.jsp"/>
+	</definition>
+	
+	<definition name="Plantillas.Consulta.Modificar" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/plantillas/JspHeadContentPlantillas.jsp" />
+		<put-attribute name="Body" value="/jsp/plantillas/JspPlantillasModificar.jsp"/>
+	</definition>
+	
+	<definition name="Plantillas.Consulta.Prorroga" extends="Main.Layout">
+	    <put-attribute name="HeadContent" value="/jsp/plantillas/JspHeadContentPlantillas.jsp" />
+	    <put-attribute name="Body" value="/jsp/plantillas/JspPlantillasConsultarProrrogas.jsp"/>
+	</definition>
+			
+	<definition name="Plantillas.Capturar.Prorroga" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/plantillas/JspHeadContentPlantillas.jsp" />
+		<put-attribute name="Body" value="/jsp/plantillas/JspPlantillasCapturarProrroga.jsp"/>
+  	</definition>
+	<!-- Termina Plantillas -->
+
+  	
+  	<!-- Calendario de actividades -->
+	<definition name="Calendario.Main.Layout" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/Calendario/JspHeadContentCalendario.jsp"/>
+  	</definition>  	
+  	
+  	<definition name="Calendario.Layout" extends="Calendario.Main.Layout">
+		<put-attribute name="Body" value="/jsp/Calendario/JspCalendario.jsp"/>
+  	</definition>
+  	
+  	<definition name="Calendario.Iniciar.Layout" extends="Calendario.Main.Layout">
+		<put-attribute name="Body" value="/jsp/Calendario/JspCalendario.jsp"/>
+  	</definition>
+  	
+  	<definition name="Calendario.Guardar.Layout" extends="Calendario.Main.Layout">
+		<put-attribute name="Body" value="/jsp/Calendario/JspCalendario.jsp"/>
+  	</definition>
+  	
+  	  	<definition name="Calendario.Consultar.Layout" extends="Calendario.Main.Layout">
+		<put-attribute name="Body" value="/jsp/Calendario/JspConsultarCalendario.jsp"/>
+  	</definition>  	  	
+  	
+  	<definition name="Calendario.Modificar.Layout" extends="Calendario.Main.Layout">
+		<put-attribute name="Body" value="/jsp/Calendario/JspModificarCalendario.jsp"/>
+  	</definition>
+  	
+  	  	<definition name="Calendario.Eliminar.Layout" extends="Calendario.Main.Layout">
+		<put-attribute name="Body" value="/jsp/Calendario/JspEliminarCalendario.jsp"/>
+  	</definition>    	  	
+ 	<!-- /Calendario de actividades -->
+  	<!-- Solicitud de Pago -->
+  	<definition name="Solicitud.Pago.Main.Layout" extends="Main.Layout">
+	  	<put-attribute name="HeadContent" value="/jsp/solicitudpago/JspHeadContentSolicitudPago.jsp"/>
+  	</definition>
+  	
+  	<definition name="Solicitud.Pago.Inicio.Layout" extends="Solicitud.Pago.Main.Layout">
+  		<put-attribute name="Body" value="/jsp/solicitudpago/JspSolicitudPago.jsp"/>
+  	</definition>
+
+  	<!-- /Solicitud de Pago -->
+  	  	<!-- Movimientos -->
+	<definition name="Empleados.Layout.Capturar" extends="Main.Layout">
+	    <put-attribute name="HeadContent" value="/jsp/movimientos/JspHeadContentEmpleados.jsp"/>
+		<put-attribute name="Body" value="/jsp/movimientos/JspAltaEmpleados.jsp" />
+  	</definition>  	  	
+  	  	
+  	<definition name="Empleados.Layout.Consultar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/movimientos/JspHeadContentEmpleados.jsp"/>
+		<put-attribute name="Body" value="/jsp/movimientos/JspConsultaEmpleados.jsp" />
+  	</definition> 
+  	
+  	<definition name="Empleados.Layout.Modificar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/movimientos/JspHeadContentEmpleados.jsp"/>
+		<put-attribute name="Body" value="/jsp/movimientos/JspModificaEmpleados.jsp" />
+  	</definition>   	
+  	
+  	<definition name="Empleados.Layout.Baja" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/movimientos/JspHeadContentEmpleados.jsp"/>
+		<put-attribute name="Body" value="/jsp/movimientos/JspBajaEmpleados.jsp" />
+  	</definition>   
+  	
+  	<definition name="Empleados.Layout.Reingreso" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/movimientos/JspHeadContentEmpleados.jsp"/>
+		<put-attribute name="Body" value="/jsp/movimientos/JspReingresoEmpleados.jsp" />
+  	</definition>  
+  	
+  	<definition name="Empleados.Layout.Reingreso.Alta" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/movimientos/JspHeadContentEmpleados.jsp"/>
+		<put-attribute name="Body" value="/jsp/movimientos/JspReingresoAlta.jsp" />
+  	</definition> 
+  	
+  	<definition name="Conceptos.Layout.Capturar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/movimientos/JspHeadContentEmpleados.jsp"/>
+		<put-attribute name="Body" value="/jsp/movimientos/JspConceptosADescontar.jsp" />
+  	</definition>  
+  	
+  	<definition name="Conceptos.Layout.Consultar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/movimientos/JspHeadContentEmpleados.jsp"/>
+		<put-attribute name="Body" value="/jsp/movimientos/JspConsultaConceptosADescontar.jsp" />
+  	</definition> 
+  	
+  	<definition name="Conceptos.Layout.Modificar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/movimientos/JspHeadContentEmpleados.jsp"/>
+		<put-attribute name="Body" value="/jsp/movimientos/JspModificaConceptosADescontar.jsp" />
+  	</definition> 
+  	
+  	<definition name="Pension.Layout.Capturar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/movimientos/JspHeadContentEmpleados.jsp"/>
+		<put-attribute name="Body" value="/jsp/movimientos/JspPensionAlimenticia.jsp" />
+  	</definition>  
+  	
+  	
+  	<definition name="Pension.Layout.Consultar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/movimientos/JspHeadContentEmpleados.jsp"/>
+		<put-attribute name="Body" value="/jsp/movimientos/JspConsultaPensionAlimenticia.jsp" />
+  	</definition>  
+  	
+  	<definition name="Pension.Layout.Modificar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/movimientos/JspHeadContentEmpleados.jsp"/>
+		<put-attribute name="Body" value="/jsp/movimientos/JspModificaPensionAlimenticia.jsp" />
+  	</definition>  
+  	
+  	<definition name="Empleados.Layout.BajasMasivas" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/movimientos/JspHeadContentEmpleados.jsp"/>
+		<put-attribute name="Body" value="/jsp/movimientos/JspBajasMasivas.jsp" />
+  	</definition> 
+  	  	
+  	<!-- Termina Movimientos -->
+  	
+  	
+  	<!-- Proceso Nomina -->
+	<definition name="ProcesoNomina.Layout" extends="Main.Layout">
+	    <put-attribute name="HeadContent" value="/jsp/nomina/proceso/JspHeadContentProcesoNomina.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/proceso/JspProcesoNomina.jsp" />
+  	</definition>  	  	
+  	<!-- Termina Proceso Nomina -->
+  	
+  	<!-- FORMAS VALORADAS -->
+  	
+  	<!-- Head Content -->
+  	<definition name="formasValoradas.Main.Layout" extends="Main.Layout">
+ 		<put-attribute name="HeadContent" value="/jsp/formasvaloradas/JspHeadContentFormasValoradas.jsp"/>
+ 	</definition>
+ 	
+ 	<!-- Mensaje confirmaci�n -->  	
+	<definition name="formasValoradas.mensajeConfirmacion.layout" extends="formasValoradas.Main.Layout">
+		<put-attribute name="Body" value="/jsp/formasvaloradas/JspFormasValoradasConfirmacion.jsp" />																									   
+  	</definition>	  	  	  	
+  	
+  	<!-- Mensaje error -->
+	<definition name="formasValoradas.error.layout" extends="formasValoradas.Main.Layout">
+		<put-attribute name="Body" value="/jsp/formasvaloradas/JspFormasValoradasError.jsp" />
+  	</definition>
+  	
+  	<!-- Asignaci�n Formas -->
+  	<definition name="FormasValoradas.Asignacion.Layout" extends="formasValoradas.Main.Layout">
+		<put-attribute name="Body" value="/jsp/formasvaloradas/JspFormasValoradasCapturar.jsp" />
+  	</definition>
+  	
+  	<definition name="FormasValoradas.Consultar.Layout" extends="formasValoradas.Main.Layout">
+		<put-attribute name="Body" value="/jsp/formasvaloradas/JspFormasValoradasConsultar.jsp" />
+  	</definition>
+  	
+  	<definition name="FormasValoradas.Modificar.Layout" extends="formasValoradas.Main.Layout">
+  		<put-attribute name="Body" value="/jsp/formasvaloradas/JspFormasValoradasModificar.jsp"/>
+  	</definition>
+  	
+  	<!-- Inutilizacion Formas -->
+  	<definition name="FormasValoradas.Inutilizacion.Layout" extends="formasValoradas.Main.Layout">
+  		<put-attribute name="Body" value="/jsp/formasvaloradas/JspInutilizacionCapturar.jsp"/>
+  	</definition>
+  	
+  	<definition name="FormasValoradas.DetalleInutilizacion.Layout" extends="formasValoradas.Main.Layout">
+  		<put-attribute name="Body" value="/jsp/formasvaloradas/JspInutilizacionDetalle.jsp"/>
+  	</definition>
+  	
+  	<definition name="FormasValoradas.DetalleInutilizacionDisponible.Layout" extends="formasValoradas.Main.Layout">
+  		<put-attribute name="Body" value="/jsp/formasvaloradas/JspInutilizacionDetalleDisponible.jsp" />
+  	</definition>
+  	
+  	<!-- Cancelaci�n de Cheques -->
+  	<definition name="FormasValoradas.CancelacionCaptura.Layout" extends="formasValoradas.Main.Layout" >
+  		<put-attribute name="Body" value="/jsp/formasvaloradas/JspCancelacionCapturar.jsp"/>
+  	</definition>
+  	
+  	<definition name="FormasValoradas.CancelacionActualiza.Layout" extends="formasValoradas.Main.Layout" >
+  		<put-attribute name="Body" value="/jsp/formasvaloradas/JspCancelacionActualizar.jsp" />
+  	</definition>
+  	
+  	<definition name="FormasValoradas.CancelacionModificar.Layout" extends="formasValoradas.Main.Layout" >
+  		<put-attribute name="Body" value="/jsp/formasvaloradas/JspCancelacionDetalle.jsp" />
+  	</definition>
+  	
+  	<definition name="FormasValoradas.CancelacionConsultar.Layout" extends="formasValoradas.Main.Layout" >
+  		<put-attribute name="Body" value="/jsp/formasvaloradas/JspCancelacionConsulta.jsp" />
+  	</definition>
+  	
+  	<definition name="FormasValoradas.CancelacionConsultaDetalle.Layout" extends="formasValoradas.Main.Layout">
+  		<put-attribute name="Body" value="/jsp/formasvaloradas/JspCancelacionDetalleConsulta.jsp" />
+  	</definition>
+  	
+  	<!-- Conciliacion de Cheques -->
+  	<definition name="FormasValoradas.ConciliacionCaptura.Layout" extends="formasValoradas.Main.Layout" >
+  		<put-attribute name="Body" value="/jsp/formasvaloradas/JspConciliacionCapturar.jsp"></put-attribute>
+  	</definition>
+  	
+  	<definition name="FormasValoradas.ConciliacionConsulta.Layout" extends="formasValoradas.Main.Layout" >
+  		<put-attribute name="Body" value="/jsp/formasvaloradas/JspConciliacionConsultar.jsp"></put-attribute>
+  	</definition>
+  	
+  	<definition name="FormasValoradas.ConciliacionConsultaFolios.Layout" extends="formasValoradas.Main.Layout" >
+  		<put-attribute name="Body" value="/jsp/formasvaloradas/JspConciliacionConsultarFolios.jsp"></put-attribute>
+  	</definition>
+  	<!-- TERMINA FORMAS VALORADAS -->
+  	
+  	<!-- 
+  		Reportes Formas 
+  	-->	
+	<!-- Head content para incluir el men� y evitar problemas de jquery con prototype -->
+	<definition name="reporte.main.layout" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/reportes/plantilla/JspHeadContentPlantilla.jsp" />
+  	</definition>
+  	
+  	<definition name="reporte.formas.menu" extends="reporte.main.layout">
+		<put-attribute name="Body" value="/jsp/reportes/JspFormasMenu.jsp" />
+  	</definition>
+  	
+	<!--  Termina Reportes Formas Valoradas -->
+
+
+	<!-- Reportes -->
+	
+  	<!--<definition name="Issste.Layout" template="/jsp/JspMaster.jsp">
+		<put-attribute name="Header" value="/jsp/JspHeader.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/JspLayoutIssste.jsp" />
+        <put-attribute name="Footer" value="/jsp/JspFooter.jsp"/>
+</definition>-->
+  	<!-- Termina  -->
+
+
+
+<!-- Entrada -->
+  	<definition name="Login.Layout" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/JspHeadContentIndex.jsp"/>
+  		<put-attribute name="Header" value="/jsp/JspHeaderIndex.jsp" />
+		<put-attribute name="Body" value="/jsp/JspIndex.jsp" />
+  	</definition>
+  	
+  	<definition name="Select.Layout" extends="Login.Layout">
+  		<put-attribute name="Body" value="/jsp/JspSelect.jsp" />
+  	</definition>
+  	
+  	<definition name="MultipleSelect.Layout" extends="Login.Layout">
+  		<put-attribute name="Body" value="/jsp/JspMultipleSelect.jsp" />
+  	</definition>
+  	
+  	<definition name="Home.Layout" extends="Login.Layout">
+  		<put-attribute name="Body" value="/jsp/JspHome.jsp" />
+  	</definition>
+  	
+  	<definition name="Blanco.Layout" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/JspHeadContentHome.jsp" />
+  		<put-attribute name="Body" value="/jsp/JspBlanco.jsp" />
+  	</definition>
+  	<!-- Entrada -->
+
+	<!-- Men� -->
+	<definition name="ErrorMenu.Layout" extends="Home.Layout">
+		<put-attribute name="Body" value="/jsp/JspSelectCombos.jsp" />
+	</definition>
+	
+	<!-- Men� -->
+
+<!-- Comienza reportes -->
+
+	<definition name="ReportesPrincipal" extends="Main.Layout">	
+		<put-attribute name="Body" value="/jsp/reportes/JspReportes.jsp" />
+  	</definition>
+  	
+  	<definition name="Reportes.Layout" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/JspHeadReportes.jsp"/>
+  	</definition>
+  	
+  	<definition name="MenuReportesPrincipal" extends="Reportes.Layout">
+		<put-attribute name="Body" value="/jsp/reportes/JspMenuReportes.jsp" />
+  	</definition>  
+  	
+  	<!-- Historico Movimientos -->
+	<definition name="HistoricoDeMovimientos" extends="Reportes.Layout">	
+		<put-attribute name="Body" value="/jsp/reportes/historicomovimientos/JspHistoricoMovimientos.jsp" />
+  	</definition>
+  	
+  	<!-- Historico Pagos -->
+	<definition name="HistoricoDePagos" extends="Reportes.Layout">	
+		<put-attribute name="Body" value="/jsp/reportes/historicopagos/JspHistoricoPagos.jsp" />
+  	</definition>
+  	 	
+  	
+  	<!-- reporte plazas por unidad responsable-->
+  	<definition name="plazasPorUnidadR" extends="Reportes.Layout">	
+		<put-attribute name="Body" value="/jsp/reportes/plazasPorUnidadR/JspPlazasPorUnidadR.jsp" />
+  	</definition>
+  	  
+  	
+  	<!-- Layout Issste -->
+	<definition name="layout.issste" extends="Main.Layout">
+	<put-attribute name="HeadContent" value="/jsp/reportes/LayoutIsssteFovisssteSar/JspHeadContentLayoutissste.jsp"/>
+	<put-attribute name="Body" value="/jsp/reportes/LayoutIsssteFovisssteSar/JspLayoutIssste.jsp" />
+	</definition>
+	
+	<!-- Layout Fovissste -->
+	<definition name="layout.fovissste" extends="Main.Layout">
+	<put-attribute name="HeadContent" value="/jsp/reportes/LayoutIsssteFovisssteSar/JspHeadContentLayoutFovissste.jsp"/>
+	<put-attribute name="Body" value="/jsp/reportes/LayoutIsssteFovisssteSar/JspLayoutFovissste.jsp" />
+	</definition>
+	
+	<!-- Layout Sar -->
+	<definition name="layout.sar" extends="Main.Layout">
+	<put-attribute name="Body" value="/jsp/reportes/LayoutIsssteFovisssteSar/JspLayoutSar.jsp" />
+	</definition>
+
+  	
+  	<!-- Resumen Global de comprobacion de nomina -->
+  	<definition name="ResumenGCN" extends="Main.Layout">	
+		<put-attribute name="Body" value="/jsp/reportes/resumenglobalcompnom/jspResumenGCN.jsp" />
+  	</definition>		
+  	
+  	<!-- Relacion cheques de nomina -->
+  	<definition name="RelacionChqN" extends="Reportes.Layout">	
+		<put-attribute name="Body" value="/jsp/reportes/relacionchequesnomina/jspRelacionChqNomina.jsp" />
+  	</definition>  	
+  	<!-- Comprobacion de nomina -->
+  	<definition name="ComprobacionDeNomina" extends="Reportes.Layout">	
+		<put-attribute name="Body" value="/jsp/reportes/comprobacionnomina/jspComprobacionN.jsp" />
+  	</definition>	
+  	
+  	<!-- 
+  		Reporte plantillas 
+  	-->	
+	<!-- Head content para incluir el men� y evitar problemas de jquery con prototype -->
+	<definition name="reporte.main.layout" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/reportes/plantilla/JspHeadContentPlantilla.jsp" />
+  	</definition>
+  	
+  	<definition name="reporte.plantillas.menu" extends="reporte.main.layout">
+		<put-attribute name="Body" value="/jsp/reportes/plantilla/JspPlantillaMenu.jsp" />
+  	</definition>
+  	
+  	<definition name="reporte.plantillas.error" extends="reporte.main.layout">
+		<put-attribute name="Body" value="/jsp/reportes/plantilla/JspPlantillaError.jsp" />
+  	</definition>
+
+	<!-- Constancias de percepciones y deducciones -->
+  	<definition name="ConstanciasDePerYDed" extends="Reportes.Layout">	
+		<put-attribute name="Body" value="/jsp/reportes/constanciaspyd/JspConstanciasPyD.jsp" />
+  	</definition>
+  	
+	<!-- Layout SAR-->
+  	<definition name="LayoutDelSAR" extends="Reportes.Layout">	
+		<put-attribute name="Body" value="/jsp/reportes/layoutSAR/JspLayoutSAR.jsp" />
+  	</definition>
+
+	<!-- Detalle Comprobacion de nomina -->
+  	<definition name="DetalleComprobacionNomina" extends="Reportes.Layout">	
+		<put-attribute name="Body" value="/jsp/reportes/detallecomprobacionnomina/jspDetalleCompN.jsp" />
+  	</definition>
+  	
+  	<!-- Archivo Plano -->
+  	<definition name="ArchivoPlano.Layout.Inicio" extends="Main.Layout">	
+  		<put-attribute name="HeadContent" value="/jsp/archivoplano/JspHeadContentArchivoPlano.jsp"/>
+		<put-attribute name="Body" value="/jsp/archivoplano/JSPArchivoPlano.jsp" />
+  	</definition>
+  	
+  	<!-- Layout TSARFOV-->
+  	<definition name="LayoutDelTSARFOV" extends="Reportes.Layout">	
+		<put-attribute name="Body" value="/jsp/reportes/layoutTSARFOV/JspLayoutTSARFOV.jsp" />
+  	</definition>
+  	
+  	<!-- Historico Reintegros -->
+  	<definition name="HistoricoReintegros.Layout.Inicio" extends="Main.Layout">	
+  		<put-attribute name="HeadContent" value="/jsp/reportes/historicoreintegros/JspHeadContentHistoricoReintegros.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/historicoreintegros/JspHistoricoReintegros.jsp" />
+  	</definition>
+  	<definition name="HistoricoReintegros.Layout.DatosTabla" extends="Main.Layout">	
+		<put-attribute name="HeadContent" value="/jsp/reportes/historicoreintegros/JspHeadContentHistoricoReintegros.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/historicoreintegros/JspDatosTabla.jsp" />
+  	</definition>
+  	<definition name="HistoricoReintegros.Layout.Detalle" extends="Main.Layout">	
+		<put-attribute name="HeadContent" value="/jsp/reportes/historicoreintegros/JspHeadContentHistoricoReintegros.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/historicoreintegros/JspDetalleReintegro.jsp" />
+  	</definition>
+  	
+  	<!-- Financiera -->
+  	<definition name="Financiera.Layout.Inicio" extends="Main.Layout">	
+  		<put-attribute name="HeadContent" value="/jsp/reportes/financiera/JspHeadContentFinanciera.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/financiera/JspFiltroFinanciera.jsp" />
+  	</definition>
+	<!-- Fin Reportes -->
+	
+
+  	<!-- Comprobacion Nomina 1 -->
+  	<definition name="ComprobacionNomina.Layout.Capturar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/comprobacion/JspHeadContentComprobacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/comprobacion/JspComprobacion.jsp" />
+  	</definition>
+  	<definition name="ComprobacionNomina.Layout.Brincar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/comprobacion/JspHeadContentComprobacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/comprobacion/JspComprobacionNom.jsp" />
+  	</definition>
+  	<definition name="ComprobacionNomina.Layout.Consultar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/comprobacion/JspHeadContentComprobacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/comprobacion/JspConsultaComprob.jsp" />
+  	</definition>
+  	<definition name="ComprobacionNomina.Layout.BrincarPension" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/comprobacion/JspHeadContentComprobacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/comprobacion/JspComprobPension.jsp" />
+  	</definition>
+  	<definition name="ComprobacionNomina.Layout.ConsultarPension" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/comprobacion/JspHeadContentComprobacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/comprobacion/JspConsulComPension.jsp" />
+  	</definition>
+  	<definition name="ComprobacionNomina.Layout.CapturarCon" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/comprobacion/JspHeadContentComprobacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/comprobacion/JspComprobacionCon.jsp" />
+  	</definition>
+  	<definition name="ComprobacionNomina.Layout.BrincarCon" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/comprobacion/JspHeadContentComprobacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/comprobacion/JspComprobacionNomC.jsp" />
+  	</definition>
+  	<definition name="ComprobacionNomina.Layout.BrincarPensionC" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/comprobacion/JspHeadContentComprobacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/comprobacion/JspComprobPensionC.jsp" />
+  	</definition>
+  	<!-- Termina Comprobacion Nomina -->
+
+  	<!-- Liberacion Nomina 1 -->
+  	<definition name="LiberacionNomina.Layout.Capturar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/liberacion/JspHeadContentLiberacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/liberacion/JspLiberacion.jsp" />
+  	</definition>
+  	<definition name="LiberacionNomina.Layout.Brincar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/liberacion/JspHeadContentLiberacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/liberacion/JspLiberacionNom.jsp" />
+  	</definition>
+  	<definition name="LiberacionNomina.Layout.Consultar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/liberacion/JspHeadContentLiberacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/liberacion/JspConsultaLibera.jsp" />
+  	</definition>
+  	<definition name="LiberacionNomina.Layout.BrincarPension" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/liberacion/JspHeadContentLiberacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/liberacion/JspLiberaPension.jsp" />
+  	</definition>
+  	<definition name="LiberacionNomina.Layout.ConsultarPension" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/liberacion/JspHeadContentLiberacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/liberacion/JspConsulComPension.jsp" />
+  	</definition>
+  	<definition name="LiberacionNomina.Layout.BrincarOC" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/liberacion/JspHeadContentLiberacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/liberacion/JspLiberacionOC.jsp" />
+  	</definition>
+  	<definition name="LiberacionNomina.Layout.ConsultarOC" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/liberacion/JspHeadContentLiberacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/liberacion/JspConsulLiberaOC.jsp" />
+  	</definition>
+  	<definition name="LiberacionNomina.Layout.CapturarCon" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/liberacion/JspHeadContentLiberacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/liberacion/JspLiberacionCon.jsp" />
+  	</definition>
+  	<definition name="LiberacionNomina.Layout.BrincarCon" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/liberacion/JspHeadContentLiberacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/liberacion/JspLiberacionNomCon.jsp" />
+  	</definition>
+  	<definition name="LiberacionNomina.Layout.BrincarPensionCon" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/liberacion/JspHeadContentLiberacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/liberacion/JspLiberaPensionCon.jsp" />
+  	</definition>
+  	<definition name="LiberacionNomina.Layout.BrincarOCCon" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/nomina/liberacion/JspHeadContentLiberacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/nomina/liberacion/JspLiberacionOCCon.jsp" />
+  	</definition>
+  	<!-- Termina Liberacion Nomina -->
+
+  	<!-- Reporte de Ocupacion de Plazas -->
+  	<definition name="OcupacionPlaza.Layout.Iniciar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/ocupacionplazas/JspHeadContentOcupacion.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/ocupacionplazas/JspFilterOcupa.jsp" />
+  	</definition>
+	<!-- Termina Reporte de Ocupación de Plazas -->
+  	
+  	<!-- Reporte de Resumen Contable -->
+  	<definition name="ResumenContable.Layout.Iniciar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/resumencontable/JspHeadContentResumen.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/resumencontable/JspFilterResumen.jsp" />
+  	</definition>
+  	<definition name="ResumenContable.Layout.Ingresar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/resumencontable/JspHeadContentResumen.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/resumencontable/JspResumenGral.jsp" />
+  	</definition>
+  	<definition name="ResumenContable.Layout.IngresarConsej" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/resumencontable/JspHeadContentResumen.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/resumencontable/JspResumenGralC.jsp" />
+  	</definition>
+  	<definition name="ResumenContable.Layout.IngresarRetroH" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/resumencontable/JspHeadContentResumen.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/resumencontable/JspResumenGralRetroH.jsp" />
+  	</definition>
+  	<definition name="ResumenContable.Layout.IngresarRetroC" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/resumencontable/JspHeadContentResumen.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/resumencontable/JspResumenGralRetroC.jsp" />
+  	</definition>
+  	<definition name="ResumenContable.Layout.IngresarDet" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/resumencontable/JspHeadContentResumen.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/resumencontable/JspResumenGralDet.jsp" />
+  	</definition>
+  	<definition name="ResumenContable.Layout.IngresarDetCon" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/resumencontable/JspHeadContentResumen.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/resumencontable/JspResumenGralCDet.jsp" />
+  	</definition>
+  	<definition name="ResumenContable.Layout.IngresarDetRH" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/resumencontable/JspHeadContentResumen.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/resumencontable/JspResumenGralRetroHDet.jsp" />
+  	</definition>
+  	<definition name="ResumenContable.Layout.IngresarDetRC" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/resumencontable/JspHeadContentResumen.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/resumencontable/JspResumenGralRetroCDet.jsp" />
+  	</definition>
+  	<definition name="ResumenContable.Layout.IngresarE" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/resumencontable/JspHeadContentResumen.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/resumencontable/JspResumenGralE.jsp" />
+  	</definition>
+  	
+  	<!-- jonas -->
+  	<definition name="ResumenContable.Layout.ingresarDetOrdDist" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/resumencontable/JspHeadContentResumen.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/resumencontable/JspResGralDetOrdDist.jsp" />
+  	</definition>
+  	<definition name="ResumenContable.Layout.ingresarDetConDist" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/resumencontable/JspHeadContentResumen.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/resumencontable/JspReGralConDetDist.jsp" />
+  	</definition>
+  	<definition name="ResumenContable.Layout.ingresarDetDist" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/resumencontable/JspHeadContentResumen.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/resumencontable/JspResGralRetroDist.jsp" />
+  	</definition>
+	<!-- Termina Reporte de Resumen Contable -->
+	
+	<!-- Reporte de Seguro de Vida -->
+  	<definition name="SeguroVida.Layout.Iniciar" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/segurovida/JspHeadContentSeguro.jsp"/>
+		<put-attribute name="Body" value="/jsp/reportes/segurovida/JspFilterSeguro.jsp" />
+  	</definition>
+	<!-- Termina Reporte de Seguro de Vida -->
+	
+
+  	<!-- Reintegros (Comprobacion de N�mina) -->
+  	<definition name="ComprobacionNominaReintegros.Layout.Capturar" extends="formasValoradas.Main.Layout" >
+  		<put-attribute name="Body" value="/jsp/nomina/comprobacion/JspReintegroCapturar.jsp" />
+  	</definition>
+  	<definition name="ComprobacionNominaReintegros.Layout.Actualizar" extends="formasValoradas.Main.Layout">
+  		<put-attribute name="Body" value="/jsp/nomina/comprobacion/JspReintegrosActualizar.jsp" />
+  	</definition>
+  	<definition name="ComprobacionNominaReintegros.Layout.Modificar" extends="formasValoradas.Main.Layout">
+  		<put-attribute name="Body" value="/jsp/nomina/comprobacion/JspReintegrosModificar.jsp" />
+  	</definition>
+  	<definition name="ComprobacionNominaReintegros.Layout.Buscar" extends="formasValoradas.Main.Layout">
+  		<put-attribute name="Body" value="/jsp/nomina/comprobacion/JspReintegroBuscar.jsp" />
+  	</definition>
+  	
+  	
+  	<!-- Termina Reintegros -->
+
+	<!-- Comienza procesos -->
+	<definition name="Procesos.Main.Layout" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/procesos/JspProcesosHeadContent.jsp" />
+  	</definition>
+	<definition name="ProcesosPrincipal" extends="Procesos.Main.Layout">	
+		<put-attribute name="Body" value="/jsp/procesos/JspProcesos.jsp" />
+  	</definition>
+  	<definition name="ImpresionDeCheques" extends="Procesos.Main.Layout">	
+		<put-attribute name="Body" value="/jsp/procesos/impresioncheques/JspImpresionDeCheques.jsp" />
+  	</definition>
+  	<definition name="ValidaCheques" extends="Procesos.Main.Layout">
+  		<put-attribute name="Body" value="/jsp/procesos/impresioncheques/JspValidaCheques.jsp"></put-attribute>
+  	</definition>
+  	<definition name="ImpresionDeNominaFirma" extends="Procesos.Main.Layout">
+	  	<put-attribute name="Body" value="/jsp/procesos/impresionnominafirma/JspImpresionDeNominaFirma.jsp" /> 
+	</definition>
+	<definition name="ImpresionDeContratos" extends="Procesos.Main.Layout">	
+		<put-attribute name="Body" value="/jsp/procesos/impresioncontratos/JspImpresionDeContratos.jsp" />
+  	</definition>
+  	<definition name="GeneracionDeContratos" extends="Procesos.Main.Layout">	
+		<put-attribute name="Body" value="/jsp/procesos/impresioncontratos/JspGeneracionDeContratos.jsp" />
+  	</definition>
+  	
+	<!-- Fin procesos -->
+
+	<!-- Impuestos Sobre Nomina -->
+	<definition name="ImpuestosSobreNomina" extends="Procesos.Main.Layout">	
+		<put-attribute name="Body" value="/jsp/reportes/impuestoSobreNomina/JspReporteImpuestoSobreNomina.jsp" />
+  	</definition>
+	
+	<!-- impresion-credencial -->
+  	<definition name="impresion.credencial" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/procesos/impresion/JspHeadContentCredencial.jsp"/>
+    	<put-attribute name="Body" value="/jsp/procesos/impresion/JspImpresionCredencial.jsp"/>    
+	</definition>
+		
+	<!-- impresion-constancia -->
+  	<definition name="impresion.constancia" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/procesos/impresion/JspHeadContentConstancia.jsp"/>
+    	<put-attribute name="Body" value="/jsp/procesos/impresion/JspImpresionConstancia.jsp"/>
+	</definition>
+			
+	<!-- reporte-plazas -->
+  	<definition name="reporte.plaza.parametrizable" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/plazas/JspHeadContentRptPlaza.jsp"/>
+    	<put-attribute name="Body" value="/jsp/reportes/plazas/JspReportePlazaParametrizable.jsp"/>    
+	</definition>
+	
+	<!-- reporte-solicitud-pago -->
+  	<definition name="reporte.solicitud.pago" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/reportes/rptSolicitudPago/JspHeadContentRptSolicitudPago.jsp"/>
+    	<put-attribute name="Body" value="/jsp/reportes/rptSolicitudPago/JspRptSolicitudPago.jsp"/>    
+	</definition>
+	
+	<!-- Archivos -->
+	<!-- Head content para incluir el men�, jquery y librer�as de javascript -->
+	<definition name="Archivos.Main.Layout" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/archivos/JspArchivosHeadContent.jsp" />
+  	</definition>
+  	 	
+ 	<definition name="archivos.menu.layout" extends="Archivos.Main.Layout">
+		<put-attribute name="Body" value="/jsp/archivos/JspArchivosMenu.jsp" />
+  	</definition>
+	
+	<!-- termina archivos -->
+
+	<!-- reexpedir cheques -->
+	<definition name="ReexpideCheque" extends="Reportes.Layout">	
+		<put-attribute name="Body" value="/jsp/formasvaloradas/JspReexpideFormasValoradas.jsp" />
+  	</definition>
+  	<!-- fin reexpedir cheques -->
+  	
+  	<!-- Conciliacion Masiva -->
+  	<definition name="Conciliacion.Masiva.Iniciar" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/procesos/conciliacion/JspConciliaMasivaHeadContent.jsp" /> 
+    	<put-attribute name="Body" value="/jsp/procesos/conciliacion/JspConciliacionMasiva.jsp"/>
+	</definition>
+	<!-- Fin Conciliacion Masiva -->
+
+  	<!-- Consulta Conciliacion Masiva -->
+  	<definition name="Conciliacion.Masiva.Consulta" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/procesos/conciliacion/JspConciliaMasivaHeadContent.jsp" /> 
+    	<put-attribute name="Body" value="/jsp/procesos/conciliacion/JspConsultaConciliacion.jsp"/>
+	</definition>
+	<!-- Fin Consulta Conciliacion Masiva -->
+	  	
+  	<!--Resultado Consulta Conciliacion Masiva -->
+  	<definition name="Conciliacion.Masiva.ResultadoConsulta" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/procesos/conciliacion/JspConciliaMasivaHeadContent.jsp" /> 
+    	<put-attribute name="Body" value="/jsp/procesos/conciliacion/JspResultadoConsultaConciliacion.jsp"/>
+	</definition>
+	<!-- Fin Resultado Consulta Conciliacion Masiva -->
+  	
+  	
+	<!-- Partidas en Conciliación -->  	
+  	<definition name="partidasEnConciliacion.CaptMod" extends="Main.Layout">
+		<put-attribute name="HeadContent" value="/jsp/conciliacion/JspPartidasEnConciliacionContent.jsp" />  	
+		<put-attribute name="Body" value="/jsp/conciliacion/JspPartidasEnConciliacionCaptMod.jsp" />
+  	</definition>
+  	
+  	<definition name="partidasEnConciliacion.Consulta" extends="Main.Layout">
+  		<put-attribute name="HeadContent" value="/jsp/conciliacion/JspPartidasEnConciliacionContent.jsp" />
+		<put-attribute name="Body" value="/jsp/conciliacion/JspPartidasEnConciliacionConsulta.jsp" />
+  	</definition>  	
+  	<!-- Fin Partidas en Cociliación -->  			
+  	
+	<!-- reporte Partidas en Conciliación -->
+  	<definition name="RPTPartidasConciliacion.FiltroBusqueda" extends="Main.Layout">
+    	<put-attribute name="Body" value="/jsp/reportes/partidasConciliacion/JspFiltroPartidasConciliacion.jsp"/>    
+	</definition>  	
+  	<definition name="RPTPartidasConciliacion.ResultadoConsultaCheques" extends="Main.Layout">
+    	<put-attribute name="Body" value="/jsp/reportes/partidasConciliacion/JspResultadoConsultaCheques.jsp"/>    
+	</definition>  	
+  	
+</tiles-definitions>

@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/06/2011 03:56:56 PM by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="mx.org.ife.sinope.dto.movimientos.DTOHistoricoMovimientos" table="HISTORICO_MOVIMIENTOS" schema="SINOPE">
+        <id name="idHistoricoMovimiento" type="java.lang.Long">
+            <column name="ID_HISTORICO_MOVIMIENTO" precision="10" scale="0" />
+            <!--<generator class="increment" />-->            
+         	<generator class="sequence">
+		    	<param name="sequence">ID_HISTORICO_MOVIMIENTO</param>
+		   	</generator>  
+        </id>
+        <many-to-one name="empleados" class="mx.org.ife.sinope.dto.movimientos.DTOEmpleados" fetch="select" insert="true">
+            <column name="ID_EMPLEADO" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="CQuincenas" class="mx.org.ife.sinope.dto.catalogos.DTOCQuincenas" fetch="select" lazy="false">
+            <column name="ANIO" precision="4" scale="0" not-null="true" />
+            <column name="NUMERO_QNA" precision="2" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="CMovimientos" class="mx.org.ife.sinope.dto.catalogos.DTOCMovimientos" fetch="select" lazy="false">
+            <column name="ID_MOVIMIENTO" length="2" not-null="true" />
+        </many-to-one>
+        <many-to-one name="CMotivosBaja" class="mx.org.ife.sinope.dto.catalogos.DTOCMotivosBaja" fetch="select" lazy="false">
+            <column name="ID_MOTIVO_BAJA" precision="2" scale="0" />
+        </many-to-one>
+        <many-to-one name="plazas" class="mx.org.ife.sinope.dto.plantillas.DTOPlazas" fetch="select">
+            <column name="ID_PLAZA" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="radicacion" class="mx.org.ife.sinope.dto.catalogos.DTOCRadicaciones" fetch="select" lazy="false">
+            <column name="ID_RADICACION" precision="4" scale="0" />
+        </many-to-one>
+        <many-to-one name="subradicacion" class="mx.org.ife.sinope.dto.catalogos.DTOCSubradicaciones" fetch="select" lazy="false">
+            <column name="ID_SUBRADICACION" precision="4" scale="0"/>
+        </many-to-one>
+        <property name="fechaInicio" type="java.sql.Date">
+            <column name="FECHA_INICIO" />
+        </property>
+        <property name="fechaFin" type="java.sql.Date">
+            <column name="FECHA_FIN" />
+        </property>
+        <property name="fechaHoraCaptura" type="java.sql.Timestamp">
+            <column name="FECHA_HORA_CAPTURA" not-null="true" />
+        </property>
+        <property name="numeroOficio" type="java.lang.String">
+            <column name="NUMERO_OFICIO" length="50" not-null="true" />
+        </property>
+        <property name="observaciones" type="java.lang.String">
+            <column name="OBSERVACIONES" length="1000" />
+        </property>
+        <property name="idContrato" type="java.lang.Integer">
+            <column name="ID_CONTRATO" precision="5" scale="0"/>
+        </property>        
+        <property name="rfc" type="java.lang.String">
+            <column name="RFC" length="13"  />
+        </property>
+         <property name="nombre" type="java.lang.String">
+            <column name="NOMBRE" length="35" />
+        </property>
+        <property name="apellidoPaterno" type="java.lang.String">
+            <column name="APELLIDO_PATERNO" length="30" />
+        </property>
+        <property name="apellidoMaterno" type="java.lang.String">
+            <column name="APELLIDO_MATERNO" length="30" />
+        </property>
+        <property name="usuario" type="java.lang.String">
+            <column name="USUARIO" length="100" not-null="true" />
+        </property>
+        <property name="fechaHora" type="java.sql.Timestamp">
+            <column name="FECHA_HORA" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

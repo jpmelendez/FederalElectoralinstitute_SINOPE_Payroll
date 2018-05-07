@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
+	<constant name="struts.multipart.maxSize" value="100485760" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.reload" value="false" />
+	<constant name="struts.configuration.xml.reload" value="false" />
+
+	<package name="defaultSinope" extends="struts-default" namespace="/">
+
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+
+		<interceptors>
+
+			<interceptor name="sessionInterceptor"
+				class="mx.org.ife.sinope.interceptor.SessionInterceptor" />
+
+			<interceptor-stack name="fileUploadStack">
+				<interceptor-ref name="exception" />
+				<interceptor-ref name="alias" />
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="sessionInterceptor" />
+				<interceptor-ref name="i18n" />
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="debugging" />
+				<interceptor-ref name="profiling" />
+				<interceptor-ref name="scopedModelDriven" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="fileUpload">
+					<param name="maximumSize">31457280</param>
+					<param name="allowedTypes">
+						application/msword,application/vnd.ms-excel,application/pdf,text/plain,
+						application/x-zip-compressed,application/zip,application/octet-stream,
+						application/vnd.ms-powerpoint,
+						application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+						application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+						application/vnd.openxmlformats-officedocument.presentationml.presentation,
+						application/vnd.openxmlformats-officedocument.presentationml.slideshow						
+                    </param>
+				</interceptor-ref>
+				<interceptor-ref name="checkbox" />
+				<interceptor-ref name="staticParams" />
+				<interceptor-ref name="actionMappingParams" />
+				<interceptor-ref name="params">
+					<param name="excludeParams"> dojo\..*,^struts\..*</param>
+				</interceptor-ref>
+				<interceptor-ref name="conversionError" />
+				<interceptor-ref name="validation">
+					<param name="excludeMethods"> input,back,cancel,browse</param>
+				</interceptor-ref>
+				<interceptor-ref name="workflow">
+					<param name="excludeMethods"> input,back,cancel,browse</param>
+				</interceptor-ref>
+			</interceptor-stack>
+
+			<interceptor-stack name="defaultSecurityStack">
+				<interceptor-ref name="sessionInterceptor" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="tokenSession">
+					<param name="excludeMethods">*</param>
+				</interceptor-ref>
+				<interceptor-ref name="prepare" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="defaultSecurityStack" />
+
+
+		<global-results>
+			<!-- globales -->
+			<result name="error">/jsp/JspError.jsp</result>
+			<result name="inicial" type="redirectAction">login_init</result>
+			<result name="reporte">/jsp/JspReport.jsp</result>
+			<result name="JspEntrada" type="tiles">Main.Layout</result>
+			<result name="logout_redirect" type="redirectAction">
+				<param name="actionName">login_init</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="invalid.token">/jsp/JspError.jsp</result>
+			<result name="message.page" type="tiles">message.page</result>
+
+			<result name="stream.archivo.output" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="inputName">resultStream</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+			</result>
+
+			<result name="consulta">/jsp/JspDB.jsp</result>
+
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception" />
+		</global-exception-mappings>
+
+		<action name="consultaDB_*" method="{1}"
+			class="mx.org.ife.components.controller.CTRConsultaBD" />
+
+		<action name="home">
+			<result name="Bienvenida" type="tiles">Bienvenida</result>
+		</action>
+
+		<action name="master">
+			<result type="tiles">Main.Layout</result>
+		</action>
+
+		<!-- ==================Login y Roles============================ -->
+		<action name="login_*" method="{1}"
+			class="mx.org.ife.sinope.controller.CTRLogin">
+			<result name="input" type="tiles">Login.Layout</result>
+			<result name="input_error" type="redirectAction">login_init</result>
+			<result name="multipleSelect" type="tiles">MultipleSelect.Layout</result>
+			<result name="entrada" type="tiles">Home.Layout</result>
+			<result name="blanco" type="tiles">Blanco.Layout</result>
+			<result name="select" type="tiles">Select.Layout</result>
+		</action>
+
+		<!-- ==================Logout============================ -->
+		<action name="logout" method="execute"
+			class="mx.org.ife.sinope.controller.CTRLogOut" />
+
+		<!-- ==================Menu============================ -->
+		<action name="redirectMenu" method="redireccionaModulo"
+			class="mx.org.ife.sinope.controller.CTRMenu">
+			<result name="exito" type="redirectAction">
+				<param name="actionName">${actionName}</param>
+				<param name="namespace">${nameSpace}</param>
+			</result>
+			<result name="error" type="tiles">ErrorMenu.Layout</result>
+		</action>
+
+	</package>
+
+
+	<!-- SOLICITUD DE PAGO -->
+	<package name="solicitud_pago" namespace="/solicitud_pago"
+		extends="defaultSinope">
+		<default-interceptor-ref name="defaultSecurityStack" />
+		<!--
+			<interceptors> <interceptor name="authenticationSinopeInterceptor"
+			class="mx.org.ife.sinope.interceptor.AuthenticationSinopeInterceptor"/>
+
+			Interceptor encargado de verificar las url de acuerdo a los roles
+			<interceptor name="sessionInterceptor"
+			class="mx.org.ife.sinope.interceptor.SessionInterceptor" />
+
+			</interceptors>
+		-->
+		<action name="iniciar"
+			class="mx.org.ife.sinope.controller.solicitudpago.CTRSolicitudPago">
+			<result type="tiles">Solicitud.Pago.Inicio.Layout</result>
+		</action>
+		<action name="generar"
+			class="mx.org.ife.sinope.controller.solicitudpago.CTRSolicitudPago"
+			method="generar">
+		</action>
+
+		<action name="tipos.nomina"
+			class="mx.org.ife.sinope.controller.solicitudpago.CTRSolicitudPago"
+			method="consultarTiposNomina"/>
+
+		<action name="validar"
+			class="mx.org.ife.sinope.controller.solicitudpago.CTRSolicitudPago"
+			method="validar">
+		</action>
+
+		<action name="consultar_issste"
+			class="mx.org.ife.sinope.controller.solicitudpago.CTRSolicitudPago"
+			method="consultarIssste">
+		</action>
+
+		<action name="consulta_pension_alimenticia"
+			class="mx.org.ife.sinope.controller.solicitudpago.CTRSolicitudPago"
+			method="consultarPAlimenticias">
+		</action>
+
+		<action name="calc_per_ded"
+			class="mx.org.ife.sinope.controller.solicitudpago.CTRSolicitudPago"
+			method="calcularNomina">
+		</action>
+
+		<action name="calcularPeriodo"
+			class="mx.org.ife.sinope.controller.solicitudpago.CTRSolicitudPago"
+			method="buscarPeriodos">
+		</action>
+
+	</package>
+	<!-- /SOLICITUD DE PAGO -->
+
+
+	<!-- Archivos de configuración de cada web controller  -->
+	<include file="mx/org/ife/sinope/controller/CTRParametro.xml" />
+	<include file="mx/org/ife/sinope/controller/CTRCalendarioActividades.xml" />
+	<include
+		file="mx/org/ife/sinope/controller/catalogos/EstructuraProgramatica.xml" />
+	<include
+		file="mx/org/ife/sinope/controller/catalogos/general/struts-catalogos.xml" />
+	<include
+		file="mx/org/ife/sinope/controller/movimientos/CTRAltaEmpleados.xml" />
+	<include file="mx/org/ife/sinope/controller/plantillas/CTRPlantillas.xml" />
+	<include
+		file="mx/org/ife/sinope/controller/nomina/proceso/CTRProcesoNomina.xml" />
+	<include
+		file="mx/org/ife/sinope/controller/formasvaloradas/CTRFormasValoradas.xml" />
+	<!--
+		<include file="mx/org/ife/sinope/controller/reportes/CTRLayouts.xml"
+		/>
+	-->
+	<include
+		file="mx/org/ife/sinope/controller/nomina/comprobacion/CTRComprobacionNomina.xml" />
+	<include
+		file="mx/org/ife/sinope/controller/nomina/liberacion/CTRLiberacionNomina.xml" />
+	<include
+		file="mx/org/ife/sinope/controller/reportes/ocupacionplaza/CTRRepOcupacion.xml" />
+	<include
+		file="mx/org/ife/sinope/controller/reportes/resumencontable/CTRRepResumenContable.xml" />
+	<include
+		file="mx/org/ife/sinope/controller/reportes/segurovida/CTRRepSeguroV.xml" />
+	<include file="mx/org/ife/sinope/controller/archivos/CTRArchivos.xml" />
+	<include file="mx/org/ife/sinope/controller/nomina/CTRReintegros.xml" />
+	<include
+		file="mx/org/ife/sinope/controller/reportes/menureportes/CTRMenuReportes.xml" />					<!-- reportes Menu permisos -->
+	<include file="mx/org/ife/sinope/controller/reportes/CTRReportes.xml" />									<!-- reportes menu test-->
+	<include
+		file="mx/org/ife/sinope/controller/reportes/historicopagos/CTRHistoricoPagos.xml" />				<!-- reportes Historico de Pagos -->
+	<include
+		file="mx/org/ife/sinope/controller/reportes/comprobacionnomina/CTRComprobacionN.xml" />			<!-- reportes Comprobacion Nomina -->
+	<!--
+		<include
+		file="mx/org/ife/sinope/controller/reportes/resumenglobalcompnom/CTRResumenGCN.xml"
+		/>
+	-->		<!-- reportes Resumen Global de Comprobacion Nomina -->
+	<include
+		file="mx/org/ife/sinope/controller/reportes/relacionchequesnomina/CTRRelacionChqNomina.xml" />		<!-- reportes Relacion cheques Nomina -->
+	<include
+		file="mx/org/ife/sinope/controller/reportes/historicomovimientos/CTRHistoricoMovimientosR.xml" />	<!-- reportes Historico de Movimientos -->
+	<include
+		file="mx/org/ife/sinope/controller/reportes/constanciaspyd/CTRConstanciasPyD.xml" />				<!-- reportes Constancia percepciones y deducciones -->
+	<include
+		file="mx/org/ife/sinope/controller/reportes/layoutissstefovissstesar/CTRLayoutIssste.xml" />		<!-- reporte Layout issste-->
+	<include
+		file="mx/org/ife/sinope/controller/reportes/layoutSAR/CTRLayoutSAR.xml" />							<!-- reportes Layout SAR -->
+	<include
+		file="mx/org/ife/sinope/controller/reportes/layoutTSARFOV/CTRLayoutTSARFOV.xml" />					<!-- reportes Layout TSARFOV -->
+	<include file="mx/org/ife/sinope/controller/procesos/CTRProcesos.xml" />									<!-- Procesos -->
+	<include file="mx/org/ife/sinope/controller/reportes/detallecomprobacionnomina/CTRDetalleCompN.xml" />		<!-- reportes Detalle Comprobacion Nomina -->
+	<include file="mx/org/ife/sinope/controller/formasvaloradas/CTRReexpideFormasValoradas.xml" />				<!-- reexpide cheques -->		
+	<include file="mx/org/ife/sinope/controller/reportes/impuestoNomina/CTRImpuestosSobreNomina.xml" />			<!-- reportes Impuestos Sobre Nómina -->
+	<include file="mx/org/ife/sinope/controller/reportes/plazasporunidad/CTRPlazasPorUnidadR.xml" />
+	
+	<include file="mx/org/ife/sinope/controller/reportes/partidasConciliacion/CTRPartidasConciliacion.xml"/>    <!-- reportes Partidas en Conciliación   -->
+	
+	<!-- INICIO CONCILIACIÓN -->
+	<include file="mx/org/ife/sinope/controller/procesos/conciliacion/CTRPartidasEnConciliacion.xml" />		<!-- En Procesos Módulo Partidas en Conciliación  -->
+	<!-- FIN CONCILIACIÓN -->
+	
+	<!-- Carga de conciliación -->
+	<include file="mx/org/ife/sinope/controller/procesos/conciliacion/CTRConciliacion.xml" />		
+		
+	<package name="jsonRequest" extends="json-default">
+		<action name="ajaxCalls" class="mx.org.ife.sinope.controller.CTRAjax"
+			method="executeAjax">
+			<interceptor-ref name="json">
+				<param name="enableSMD">true</param>
+			</interceptor-ref>
+			<result type="json">
+				<param name="enableSMD">true</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+
+		<action name="JSONCboDistritos" method="getDistritos"
+			class="mx.org.ife.sinope.controller.CTRMenu">
+			<result type="json">
+				<param name="root">listaCboDistritos</param>
+			</result>
+		</action>
+
+		<action name="JSONCboEstados" method="getEstados"
+			class="mx.org.ife.sinope.controller.CTRMenu">
+			<result type="json">
+				<param name="root">listaCboEstados</param>
+			</result>
+		</action>
+
+		<action name="JSONCboQuincenas" method="getQuincenas"
+			class="mx.org.ife.sinope.controller.CTRMenu">
+			<result type="json">
+				<param name="root">listaCboQuincenas</param>
+			</result>
+		</action>
+
+		<action name="JSONMovimiento" method="getMovimiento"
+			class="mx.org.ife.sinope.controller.procesos.conciliacion.CTRPartidasEnConciliacion">
+			<result type="json">
+				<param name="root">descMovimiento</param>
+			</result>
+		</action>
+
+	</package>
+
+
+
+	<!-- impresion - credencial y constancia -->
+	<package name="impresion" namespace="/impresion" extends="defaultSinope">
+	
+	<default-interceptor-ref name="defaultSecurityStack"/>
+	
+		<action name="credencial.*" method="{1}"
+			class="mx.org.ife.sinope.controller.procesos.impresion.CTRImpresion">
+			<result name="success" type="tiles">impresion.credencial</result>
+		</action>
+		<action name="constancia.*" method="{1}"
+			class="mx.org.ife.sinope.controller.procesos.impresion.CTRImpresion">
+			<result name="success" type="tiles">impresion.constancia</result>
+		</action>
+	</package>
+
+	<!--
+		reporte-plaza-parametrizable, reporte-solicitud-pago y archivo plano
+-->
+	<package name="reporte" namespace="/reporte" extends="defaultSinope">
+	
+	<default-interceptor-ref name="defaultSecurityStack"/>
+	
+		<action name="reportePlaza.*" method="{1}"
+			class="mx.org.ife.sinope.controller.reportes.reportePlaza.CTRReportePlazaParametrizable">
+			<result name="success" type="tiles">reporte.plaza.parametrizable
+			</result>
+		</action>
+		<action name="solicitudPago.*" method="{1}"
+			class="mx.org.ife.sinope.controller.reportes.reporteSolicitudPago.CTRReporteSolicitudPago">
+			<result name="success" type="tiles">reporte.solicitud.pago</result>
+			<result name="successPDF" type="stream">
+				<param name="contentType">application/pdf</param>
+				<param name="inputName">resultStream</param>
+				<param name="contentDisposition">attachment;fileName="ReporteSolicitudPago.pdf"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="successHTML" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">resultStream</param>
+				<param name="contentDisposition">fileName="ReporteSolicitudPago.html"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="successXLS" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">resultStream</param>
+				<param name="contentDisposition">attachment;fileName="ReporteSolicitudPago.xls"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<!--
+				<result name="successXLS" type="stream"> <param
+				name="contentType">application/vnd.ms-excel</param> <param
+				name="inputName">resultStream</param> <param
+				name="contentDisposition">fileName="ReporteSolicitudPago.xls"</param>
+				<param name="bufferSize">1024</param> </result>
+			-->
+		</action>
+
+		<action name="archivo_plano_*" method="{1}"
+			class="mx.org.ife.sinope.controller.archivoplano.CTRArchivoPlano">
+			<result name="inicio" type="tiles">ArchivoPlano.Layout.Inicio</result>
+			<result name="archivoGenerado" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">fileStream</param>
+				<!--
+					<param
+					name="contentDisposition">attachment;filename="archivo_plano_temp.txt"</param>
+				-->
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<!-- ASYNC -->
+		<action name="getAsyncPeriodos" method="getAsyncPeriodos"
+			class="mx.org.ife.sinope.controller.reportes.reporteSolicitudPago.CTRReporteSolicitudPago" />
+
+	</package>
+
+</struts>
+

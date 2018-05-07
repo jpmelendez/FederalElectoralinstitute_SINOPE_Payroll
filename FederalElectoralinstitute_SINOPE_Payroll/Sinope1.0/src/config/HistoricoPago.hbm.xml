@@ -1,0 +1,287 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/06/2011 03:56:56 PM by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="mx.org.ife.sinope.dto.nomina.proceso.DTOHistoricoPago" table="HISTORICO_PAGO" schema="SINOPE">
+        <id name="idHistoricoPago" type="java.lang.Long">
+            <column name="ID_PAGO" precision="10" scale="0"/>
+            	<generator class="sequence">
+            		<param name="sequence">ID_PAGO</param>
+            	</generator>    
+        </id>
+        <many-to-one name="empleados" class="mx.org.ife.sinope.dto.movimientos.DTOEmpleados" update="false" insert="true" fetch="select">
+            <column name="ID_EMPLEADO" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="detalleFormasValoradas" class="mx.org.ife.sinope.dto.formasvaloradas.DTODetalleFormasValoradas" fetch="select" lazy="false">
+            <column name="ID_FOLIO" precision="10" scale="0" />
+        </many-to-one>
+        <many-to-one name="resumenNomina" class="mx.org.ife.sinope.dto.nomina.proceso.DTOResumenNomina" update="false" insert="true" fetch="select" lazy="false">
+            <column name="ID_NOMINA" precision="10" scale="0" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="plazas" class="mx.org.ife.sinope.dto.plantillas.DTOPlazas" update="false" insert="true" fetch="select">
+            <column name="ID_PLAZA" precision="10" scale="0" not-null="true" />
+        </many-to-one>        
+        <many-to-one name="reintegros" class="mx.org.ife.sinope.dto.nomina.comprobacion.DTOReintegros" fetch="select">
+            <column name="ID_REINTEGRO" precision="5" scale="0" />
+        </many-to-one>
+        <property name="inicioPeriodoPago" type="java.sql.Date">
+            <column name="INICIO_PERIODO_PAGO" length="7" not-null="true" />
+        </property>
+        <property name="finPeriodoPago" type="java.sql.Date">
+            <column name="FIN_PERIODO_PAGO" length="7" not-null="true" />
+        </property>
+        <property name="numeroFalta" type="java.lang.Byte">
+            <column name="NUMERO_FALTA" precision="2" scale="0"  />
+        </property>
+        <property name="numeroLicencias" type="java.lang.Byte">
+            <column name="NUMERO_LICENCIAS" precision="2" scale="0"  />
+        </property>
+        <property name="dAdeudoLegal" type="big_decimal">
+            <column name="D_ADEUDO_LEGAL" precision="10" scale="2"  />
+        </property>
+<!--         <property name="PAguinaldo" type="big_decimal"> -->
+<!--            <column name="P_AGUINALDO" precision="10" scale="4" not-null="true" /> --> 
+<!--        </property> -->
+<!--         <property name="PEstimulo" type="big_decimal"> -->
+<!--         <column name="P_ESTIMULO" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="PPensionAlimenticia" type="big_decimal"> -->
+<!--             <column name="P_PENSION_ALIMENTICIA" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="PSeguroAccidentes" type="big_decimal"> -->
+<!--             <column name="P_SEGURO_ACCIDENTES" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="PSeguroVida" type="big_decimal"> -->
+<!--             <column name="P_SEGURO_VIDA" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="PLiquidacion" type="big_decimal"> -->
+<!--             <column name="P_LIQUIDACION" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="PCompensacionTermino" type="big_decimal"> -->
+<!--             <column name="P_COMPENSACION_TERMINO" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="PCompensacionElectoral" type="big_decimal"> -->
+<!--             <column name="P_COMPENSACION_ELECTORAL" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DIsr" type="big_decimal"> -->
+<!--             <column name="D_ISR" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DSeguroInvalidez" type="big_decimal"> -->
+<!--             <column name="D_SEGURO_INVALIDEZ" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DSegSociCult" type="big_decimal"> -->
+<!--             <column name="D_SEG_SOCI_CULT" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DSegTrabAct" type="big_decimal"> -->
+<!--             <column name="D_SEG_TRAB_ACT" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DSegPensionado" type="big_decimal"> -->
+<!--             <column name="D_SEG_PENSIONADO" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DSegRetVejez" type="big_decimal"> -->
+<!--             <column name="D_SEG_RET_VEJEZ" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DAhorroSol" type="big_decimal"> -->
+<!--             <column name="D_AHORRO_SOL" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DFaltaCurso" type="big_decimal"> -->
+<!--             <column name="D_FALTA_CURSO" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DFaltaAnt" type="big_decimal"> -->
+<!--             <column name="D_FALTA_ANT" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DFaltaHonorarios" type="big_decimal"> -->
+<!--             <column name="D_FALTA_HONORARIOS" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DResponsabilidad" type="big_decimal"> -->
+<!--             <column name="D_RESPONSABILIDAD" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DPensionAlimenticia" type="big_decimal"> -->
+<!--             <column name="D_PENSION_ALIMENTICIA" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DSegAccPer" type="big_decimal"> -->
+<!--             <column name="D_SEG_ACC_PER" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DSegVida" type="big_decimal"> -->
+<!--             <column name="D_SEG_VIDA" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DCompViatico" type="big_decimal"> -->
+<!--             <column name="D_COMP_VIATICO" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DSubsidioEmpleo" type="big_decimal"> -->
+<!--             <column name="D_SUBSIDIO_EMPLEO" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--          <property name="DReinPartPreCurso" type="big_decimal">
+            <column name="D_REIN_PART_PRE_CURSO" precision="10" scale="4" not-null="true" />
+        </property
+        <property name="DReinPartPreAnt" type="big_decimal">
+            <column name="D_REIN_PART_PRE_ANT" precision="10" scale="4" not-null="true" />
+        </property>>
+        <property name="DReinPartPreIsr" type="big_decimal">
+            <column name="D_REIN_PART_PRE_ISR" precision="10" scale="4" not-null="true" />
+        </property>-->
+<!--         <property name="DPrestamoIssste" type="big_decimal"> -->
+<!--             <column name="D_PRESTAMO_ISSSTE" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DSar" type="big_decimal"> -->
+<!--             <column name="D_SAR" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DPrestamoAdic" type="big_decimal"> -->
+<!--             <column name="D_PRESTAMO_ADIC" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="DFovissste" type="big_decimal"> -->
+<!--             <column name="D_FOVISSSTE" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> --> 
+<!--         <property name="gravableHonorario" type="big_decimal"> -->
+<!--             <column name="GRAVABLE_HONORARIO" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="gravableAguinaldo" type="big_decimal"> -->
+<!--             <column name="GRAVABLE_AGUINALDO" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="excentoAguinaldo" type="big_decimal"> -->
+<!--             <column name="EXCENTO_AGUINALDO" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="gravableGastosCampo" type="big_decimal"> -->
+<!--             <column name="GRAVABLE_GASTOS_CAMPO" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+<!--         <property name="gravableEstimulos" type="big_decimal"> -->
+<!--             <column name="GRAVABLE_ESTIMULOS" precision="10" scale="4" not-null="true" /> -->
+<!--         </property> -->
+        <property name="totalDeduccion" type="big_decimal">
+            <column name="TOTAL_DEDUCCION" precision="10" scale="2" not-null="true" />
+        </property>
+        <property name="totalPercepcion" type="big_decimal">
+            <column name="TOTAL_PERCEPCION" precision="10" scale="2" not-null="true" />
+        </property>
+        <property name="montoNeto" type="big_decimal">
+            <column name="MONTO_NETO" precision="10" scale="2" not-null="true" />
+        </property>
+        <property name="chequeGenerado" type="java.lang.Character">
+            <column name="CHEQUE_GENERADO" length="1" />
+        </property>
+        <property name="usuario" type="java.lang.String">
+            <column name="USUARIO" length="100" not-null="true" />
+        </property>
+        <property name="fechaHora" type="java.sql.Timestamp">
+            <column name="FECHA_HORA" not-null="true" />
+        </property>
+        <!-- <set name="reintegroses" table="REINTEGROS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PAGO" precision="10" scale="0" not-null="true" />
+                <column name="ID_NOMINA" precision="10" scale="0" not-null="true" />
+                <column name="ID_EMPLEADO" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="mx.org.ife.sinope.dto.nomina.comprobacion.DTOReintegros" />
+        </set> -->
+        <set name="histPensionAlimenticias" table="HIST_PENSION_ALIMENTICIA" lazy="false" fetch="select" cascade="delete">
+            <key>
+                <column name="ID_PAGO" precision="10" scale="0" not-null="true" />
+                <!-- <column name="ID_NOMINA" precision="10" scale="0" not-null="true" />
+                <column name="ID_EMPLEADO" precision="10" scale="0" not-null="true" />-->
+            </key>
+            <one-to-many class="mx.org.ife.sinope.dto.nomina.proceso.DTOHistPensionAlimenticia" />
+        </set>
+           
+    </class>
+    <sql-query name="runNominaHonorariosTodas">
+          <!-- Definicion del procedimiento en la base de datos -->
+          <!--procedure procesonominahonorarios (
+           						   tipo_nomina_param      in number,
+                                   anio_param             in number,
+                                   numero_quincena_param  in number,
+                                   unidad_responsable     in varchar,
+                                   disparador_proceso     in varchar,
+                                   usuario_var            in varchar,
+                                   estado_param           in integer)
+           -->
+                                   
+		  { call proceso_nomina.procesonominahonorarios(?,?,?,?,?,?,?) }
+    </sql-query>
+    
+    <sql-query name="asignaFormasValoradas">
+                                  
+		  { call ASIGNACION_FORMAS.fn_asigna_formas(?,?,?,?,?,?,?,?) }
+		  
+    </sql-query>
+    
+    <sql-query name="solicitudPagoPl">
+          <!-- Definicion del procedimiento en la base de datos -->
+          <!-- procedure montos_solicitud(
+                           id_empleado_param     in integer,
+                           disparador_proceso    in varchar,
+                           tipo_nomina_param     in integer,
+                           numero_quincena_param in number,
+                           anio_param            in number,
+                           faltas_param          in number,
+                           licencias_param       in number,
+                           fecha_inicio_periodo  in date,
+                           fecha_fin_periodo     in date,
+                           id_plaza_param        in number)
+		 -->
+                                   
+		  { call SOLICITUD_PAGO.montos_solicitud(?,?,?,?,?,?,?,?,?,?) }
+    </sql-query>
+    
+    <sql-query name="asignaFormasValoradasEstatal">
+          <!-- Definicion del procedimiento en la base de datos -->
+          <!--procedure fn_asigna_formas_estatal(
+                           id_estado_param in number,  
+                           estatus_inicial_param in number,
+                           estatus_final_param in number, 
+                           id_nomina_param in number,
+                           tipo_pago_param in varchar,
+                           num_quincena_param in number,
+                           usuario_param in varchar); -->
+                                   
+		  { call ASIGNACION_FORMAS_ESTATAL.fn_asigna_formas_estatal(?,?,?,?,?,?,?,?) }
+    </sql-query>
+    
+    <sql-query name="resumenContableGral">
+          <!-- Definicion del procedimiento en la base de datos -->
+          <!--procedure fn_asigna_formas_estatal(
+                           id_estado_param in number,  
+                           estatus_inicial_param in number,
+                           estatus_final_param in number, 
+                           id_nomina_param in number,
+                           tipo_pago_param in varchar,
+                           num_quincena_param in number,
+                           usuario_param in varchar); -->
+                                   
+		  { call RESUMEN.setcadenaresumen(?,?) }
+    </sql-query>
+    
+    <sql-query name="resumenContableDet">
+          <!-- Definicion del procedimiento en la base de datos -->
+          <!--procedure fn_asigna_formas_estatal(
+                           id_estado_param in number,  
+                           estatus_inicial_param in number,
+                           estatus_final_param in number, 
+                           id_nomina_param in number,
+                           tipo_pago_param in varchar,
+                           num_quincena_param in number,
+                           usuario_param in varchar); -->
+                                   
+		  { call RESUMEN_CONTABLE.setcadenaDetalle(?,?,?,?,?) }
+    </sql-query>
+    
+    <sql-query name="calculoPensionesAlimenticias">
+          <!-- Definicion del procedimiento en la base de datos -->
+          <!-- procedure montos_pensiones(id_pensionada_param in number, 
+          								  id_plaza_param in number) -->
+                                   
+		  { call SOLICITUD_PAGO.montos_pensiones(?,?) }
+    </sql-query>
+
+    <sql-query name="archivoPlanoPL">
+    <!-- Author: Edrey Uriel Cruz Cruz 2012 -->
+    <!-- Definición del procedimiento en la BD -->
+    <!-- PROCEDURE PLANO_ELEMENTOS_NOMINA(
+    	anio_param in number, 
+    	quincena_param in number, 
+    	tipo_nomina_param in number, 
+    	periodo_param in number, 
+    	estado_param in number)-->
+    {call REPORTES.plano_elementos_nomina(?,?,?,?,?) }
+    </sql-query>
+</hibernate-mapping>

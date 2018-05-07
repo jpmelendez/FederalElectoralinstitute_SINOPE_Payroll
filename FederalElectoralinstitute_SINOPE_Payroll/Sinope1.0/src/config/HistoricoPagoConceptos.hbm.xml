@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/10/2011 07:45:35 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="mx.org.ife.sinope.dto.DTOHistoricoPagoConceptos" table="HISTORICO_PAGO_CONCEPTOS" schema="SINOPE">
+        <composite-id name="id" class="mx.org.ife.sinope.dto.DTOHistoricoPagoConceptosId">
+            <key-property name="idPago" type="long">
+                <column name="ID_PAGO" precision="10" scale="0" />
+            </key-property>
+            <key-property name="idNomina" type="long">
+                <column name="ID_NOMINA" precision="10" scale="0" />
+            </key-property>
+            <key-property name="idEmpleado" type="long">
+                <column name="ID_EMPLEADO" precision="10" scale="0" />
+            </key-property>
+            <key-property name="idConcepto" type="short">
+                <column name="ID_CONCEPTO" precision="4" scale="0" />
+            </key-property>
+        </composite-id>
+        <property name="monto" type="big_decimal">
+            <column name="MONTO" precision="10" scale="2" not-null="true" />
+        </property>
+        <property name="gravable" type="big_decimal">
+            <column name="GRAVABLE" precision="10" scale="2" />
+        </property>
+        <property name="exento" type="big_decimal">
+            <column name="EXENTO" precision="10" scale="2" />
+        </property>
+    </class>
+</hibernate-mapping>
